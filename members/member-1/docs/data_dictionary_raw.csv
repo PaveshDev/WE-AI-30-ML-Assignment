@@ -1,0 +1,9 @@
+Column,Type,Missing,Missing %,Distinct,Example,Meaning
+InvoiceNo,object,0,0.0,25900,536365,Invoice number. Starting with 'C' means the order was cancelled
+StockCode,object,0,0.0,4070,85123A,Product code
+Description,object,1454,0.27,4223,WHITE HANGING HEART T-LIGHT HOLDER,Product name
+Quantity,int64,0,0.0,722,6,How many items were bought (negative = returned)
+InvoiceDate,datetime64[us],0,0.0,23260,2010-12-01 08:26:00,Date and time of the sale
+UnitPrice,float64,0,0.0,1630,2.55,"Price of one item, in British pounds"
+CustomerID,float64,135080,24.93,4372,17850.0,Customer number
+Country,str,0,0.0,38,United Kingdom,Country where the customer lives
