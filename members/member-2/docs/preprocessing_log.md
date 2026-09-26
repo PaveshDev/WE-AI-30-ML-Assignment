@@ -22,8 +22,7 @@ Duplicates are removed before any totals are calculated, as recommended by EDA Q
 This prevents inflated Monetary values from duplicated line items.
 
 ### 2. Cancellation detection (Step 3)
-Two criteria are applied: InvoiceNo starting with 'C' AND Quantity < 0.
-This catches ~0 additional rows that have negative quantity but no C prefix (EDA Q8).
+The implemented criterion is a **union (OR)**: a row is removed if InvoiceNo starts with 'C' **or** Quantity < 0 (`mask_cancel = mask_c_prefix | mask_neg_qty`). This catches C-prefix invoices and any stray negative-quantity rows that lack the C-prefix. The diagnostic output showed ~0 negative-only rows (no C-prefix) after earlier filtering, but OR is the more defensively correct form. An earlier informal description in this log used AND; the code is the authoritative implementation.
 
 ### 3. Non-product codes (Step 5)
 Removed: POST, DOT, C2, S (delivery charges, carriage, samples).
@@ -34,7 +33,7 @@ M rows (171 rows) remain.
 
 ### 4. Date cutoff before RFM (Step 6 before Step 7)
 The cutoff date is 2011-09-09, which serves as the snapshot for Recency calculation.
-Cutting dates before computing RFM ensures the validation window (9 Sep -- 9 Dec 2011) is reserved for Member 4.
+Cutting dates before computing RFM ensures the future validation window (starting 2011-09-09) is reserved for Member 4. The end of that window is not set by Member 2; Member 4 must confirm the exact end date based on the raw dataset and the agreed evaluation design.
 
 ### 5. Zero-spend customers — VALIDATED
 Validated that all customers have Monetary > 0 before log transformation.
@@ -83,7 +82,8 @@ a data-loss issue but should be noted for downstream code that may expect string
 ### EDA statistics vs post-cutoff RFM values
 EDA statistics (Q1–Q12 in `eda_insight_log.csv`) were computed on the full cleaned dataset
 without the temporal cutoff. The RFM modelling table uses only rows before 2011-09-09,
-reserving 9 Sep – 9 Dec 2011 as a validation window for Member 4. This causes expected
+reserving the period from 2011-09-09 onward as a validation window for Member 4 (Member 4
+must confirm the final evaluation end date based on raw data and evaluation design). This causes expected
 differences:
 
 | Metric | Full-data EDA | Post-cutoff RFM |
@@ -102,3 +102,22 @@ These differences are expected and do not indicate an error.
 - `members/member-2/figures/rfm_distributions_raw.png`
 - `members/member-2/figures/rfm_distributions_transformed.png`
 - `members/member-2/figures/rfm_correlation_heatmap.png`
+
+## Related Documentation
+
+| Document | Location | Purpose |
+|----------|----------|---------|
+| Preprocessing strategy | `members/member-2/docs/preprocessing_strategy.md` | Full pipeline plan and rationale |
+| Preprocessing decisions | `members/member-2/docs/preprocessing_decisions.md` | 11 structured decision records with evidence |
+| Handoff to Member 3 | `members/member-2/docs/member2_handoff.md` | Schema, temporal boundary, safe usage |
+| Reproducibility guide | `members/member-2/docs/reproducibility.md` | How to re-run and validate safely |
+| Study guide | `members/member-2/docs/study.md` | Complete viva preparation (30 sections, 25 Q&As) |
+| Data dictionary | `docs/data-dictionary/member2_data_dictionary.md` | Full column definitions for both output files |
+
+## Cancellation criterion — note on earlier wording
+
+The Design Decisions section (Step 3) above now correctly states OR as the implemented criterion.
+An earlier version of this log used AND informally. The OR implementation is confirmed by code
+line 173 (`mask_cancel = mask_c_prefix | mask_neg_qty`) and is documented in
+`members/member-3/docs/modelling_strategy.md` and in
+`members/member-2/docs/preprocessing_decisions.md` (Decision M2-03).
