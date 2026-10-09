@@ -1,0 +1,43 @@
+{
+  "rows": 3362,
+  "unique_customers": 3362,
+  "duplicate_ids": 0,
+  "duplicate_rows": 0,
+  "duplicate_feature_vectors": 0,
+  "missing_values": 0,
+  "infinite_values": 0,
+  "dtypes": {
+    "CustomerID": "int64",
+    "Recency": "int64",
+    "Frequency": "int64",
+    "Monetary": "float64",
+    "Log_Frequency": "float64",
+    "Log_Monetary": "float64",
+    "Recency_scaled": "float64",
+    "Frequency_scaled": "float64",
+    "Monetary_scaled": "float64"
+  },
+  "scaled_means": {
+    "Recency_scaled": 5.9488436385926406e-12,
+    "Frequency_scaled": -9.547888317768501e-11,
+    "Monetary_scaled": 6.246275094750755e-12
+  },
+  "scaled_population_std": {
+    "Recency_scaled": 0.9999999999889823,
+    "Frequency_scaled": 0.9999999999935258,
+    "Monetary_scaled": 0.999999999994746
+  },
+  "transformation_max_absolute_errors": {
+    "Log_Frequency": 4.894133986965699e-10,
+    "Log_Monetary": 4.586812707429999e-09,
+    "Recency_scaled": 4.997187108557455e-10,
+    "Frequency_scaled": 2.3032287188584633e-09,
+    "Monetary_scaled": 3.947368654166894e-09
+  },
+  "one_order_customers": 1366,
+  "frequency_monetary_spearman": 0.7841763347840829,
+  "transaction_rows": 231806,
+  "date_min": "2010-12-01 08:26:00",
+  "date_max": "2011-09-08 19:58:00",
+  "reserved_period_rows": 0
+}

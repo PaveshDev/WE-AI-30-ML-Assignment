@@ -5,3 +5,5 @@ seaborn
 openpyxl
 scikit-learn
 
+scikit-learn
+scipy
