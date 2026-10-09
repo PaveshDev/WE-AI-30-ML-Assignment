@@ -3,6 +3,7 @@ numpy
 matplotlib
 seaborn
 openpyxl
+scikit-learn
 
 scikit-learn
 scipy

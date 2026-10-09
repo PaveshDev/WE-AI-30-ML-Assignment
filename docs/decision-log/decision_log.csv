@@ -1,0 +1,13 @@
+No.,Decision,Options considered,Chosen,Reason
+D1,Track,Guided or Industry Explorer,Guided Data Track,Approved dataset; time goes into reasoning rather than sourcing approval
+D2,Lens,Segmentation / bundling / retention,Customer segmentation,Fits the recorded data; immediately actionable; achievable in seven weeks
+D3,Second lens,Add one or not,Single lens,Descriptor states disconnected extra work earns no marks
+D4,Features,"RFM only, or RFM plus extras",RFM only,Three features stay explainable; Q11 shows F and M already overlap
+D5,Cut-off date,"Several dates, or none",9 September 2011,Leaves exactly 91 days for a real behaviour test
+D6,Cancellation rule,"'C' prefix, or prefix plus negative quantity",Both,"Belt-and-braces. Verified during integration: after the Q1 rule no prefix-less negatives remain, so the second check changes nothing but costs nothing"
+D7,Non-product codes,"Remove all, keep all, or split",Remove POST/DOT/C2/S,"Delivery and samples reflect location and packing, not purchasing. Two caveats, both verified in section 4.1: (a) D (discount) rows all carry negative quantity and are removed by D6 before this rule applies, so only M rows actually survive; (b) the exclusion list does not cover BANK CHARGES, AMAZONFEE, CRUK, gift vouchers or gift-card sets, which section 4.1 quantifies"
+D8,Transform,"Monetary only, or F and M",Both,"Q11 shows Frequency is equally skewed (median 2, max 209)"
+D9,Zero-spend customers,Remove or retain at zero,Not applicable,After D6 no customer has non-positive spend; a defensive check confirms this
+D10,Scaler,StandardScaler or MinMaxScaler,StandardScaler,Post-log distributions are roughly symmetric; MinMax would be driven by extremes
+D11,Outlier capping,"Cap as well as log, or log only",Log only,The log transform already compresses the tail; capping would discard real wholesalers
+D12,Final k,k=2 (best geometry) or k=3 (best business value),k=3,"k=2 leads on silhouette, but k=3 isolates the VIP tier that drives future revenue and gives the manager three distinct actions. Evidence in section 9"

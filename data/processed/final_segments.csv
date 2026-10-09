@@ -1,0 +1,4 @@
+cluster,Segment,customers,percent,median_recency,median_frequency,median_monetary,repeat_rate,median_spend,total_spend,Action
+0,Champions,866,25.758477096966093,22.0,6.0,2284.955,87.0,958.0150000000001,1903514.42,"Reward and protect. VIP access, not discounts"
+1,At risk / Inactive,976,29.030339083878644,192.0,1.0,246.27499999999998,34.4,0.0,357352.32,"Win back. Reactivation offer, then stop spending"
+2,Regulars / Developing,1520,45.211183819155266,58.0,2.0,498.48,54.7,119.07,568204.251,Upsell. Recommendations and volume offers
